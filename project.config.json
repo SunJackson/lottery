@@ -38,7 +38,7 @@
     "minifyWXSS": true
   },
   "appid": "wxfb7e25d113353152",
-  "projectname": "welottery",
+  "projectname": "lottery",
   "libVersion": "2.8.1",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},

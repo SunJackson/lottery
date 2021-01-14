@@ -9,15 +9,15 @@ Page({
     navigationIndex: 0,
     navigationType: 'awarded-lottery',
     navigations: [{
-        name: '中奖记录',
+        name: '幸运记录',
         type: 'awarded-lottery'
       },
       {
-        name: '待开奖',
+        name: '待公布',
         type: 'waiting-lottery'
       },
       {
-        name: '所有抽奖',
+        name: '所有参与',
         type: 'total-lottery'
       }
     ]

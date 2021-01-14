@@ -153,7 +153,7 @@ Page({
       data: this.data.user.rewardCode,
       success: function (res) {
         wx.showToast({
-          title: '兑奖码已复制',
+          title: '兑换码已复制',
           icon: 'none'
         });
       }

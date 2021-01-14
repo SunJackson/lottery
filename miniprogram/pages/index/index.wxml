@@ -29,8 +29,8 @@
       <view style="flex: 1;display: flex;flex-direction: column;justify-content: flex-end;">
         <view style="text-decoration: line-through;color: #888;padding: 10rpx 0;">¥{{ lottery.value }}</view>
         
-          <view wx:if="{{ !lottery.has }}" class="text-align-center border-radius-50rpx background-linear-gradient padding-15rpx">参与抽奖</view>
-          <view wx:else class="normal border-radius-50rpx padding-15rpx" style="display: flex;align-items: center;justify-content: center;"><image src="/images/lottery/gift.png" style="width: 36rpx;height: 36rpx;margin-right: 8rpx;"></image>待开奖</view>
+          <view wx:if="{{ !lottery.has }}" class="text-align-center border-radius-50rpx background-linear-gradient padding-15rpx">点击参与</view>
+          <view wx:else class="normal border-radius-50rpx padding-15rpx" style="display: flex;align-items: center;justify-content: center;"><image src="/images/lottery/gift.png" style="width: 36rpx;height: 36rpx;margin-right: 8rpx;"></image>待公布</view>
       </view>
     </view>
   </view>

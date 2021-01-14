@@ -13,17 +13,17 @@
 
     <navigator url="/pages/my/record?navigationIndex=0" hover-class="button-hover left" hover-stay-time="100" class="flex-column-center" style="flex:1;height:100%;">
       <view class="bold" style="color: #333;font-size: 38rpx;">{{ total1 }}</view>
-      <view class="padding-top-6rpx" style="color: #888;font-size: 30rpx;">中奖记录</view>
+      <view class="padding-top-6rpx" style="color: #888;font-size: 30rpx;">惊喜记录</view>
     </navigator>
 
     <navigator url="/pages/my/record?navigationIndex=1" hover-class="button-hover" hover-stay-time="100" class="flex-column-center" style="flex:1;height:100%;">
       <view class="bold" style="color: #333;font-size: 38rpx;">{{ total2 }}</view>
-      <view class="padding-top-6rpx" style="color: #888;font-size: 30rpx;">待开奖</view>
+      <view class="padding-top-6rpx" style="color: #888;font-size: 30rpx;">待公布</view>
     </navigator>
 
     <navigator url="/pages/my/record?navigationIndex=2" hover-class="button-hover right" hover-stay-time="100" class="flex-column-center" style="flex:1;height:100%;">
       <view class="bold" style="color: #333;font-size: 38rpx;">{{ total3 }}</view>
-      <view class="padding-top-6rpx" style="color: #888;font-size: 30rpx;">所有抽奖</view>
+      <view class="padding-top-6rpx" style="color: #888;font-size: 30rpx;">所有活动</view>
     </navigator>
 
   </view>
@@ -49,7 +49,7 @@
     <navigator url="/pages/question/index" hover-class="button-hover" hover-start-time="0" hover-stay-time="100">
       <view class="flex-row-left padding-30rpx" style="color: #000;">
         <view class="is-font icon-question" style="font-size:40rpx;color:#4a4a4a;"></view>
-        <text style="padding-left: 12rpx;font-size:32rpx;">抽奖规则</text>
+        <text style="padding-left: 12rpx;font-size:32rpx;">参与规则</text>
       </view>
     </navigator> 
 
