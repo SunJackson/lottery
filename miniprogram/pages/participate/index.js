@@ -43,7 +43,7 @@ Page({
     }
     return {
       title: (this.data.lottery.share.sponsor ? this.data.lottery.share.sponsor : (app.userInfo.nickName === undefined ? '' : app.userInfo.nickName)) + '@你来抽“' + (this.data.lottery.share.title ? this.data.lottery.share.title : this.data.lottery.rewards.map(reward => reward.name).join("；").toString()) + '”',
-      path: '/pages/index/index?lotteryId=' + this.data.lotteryId,
+      path: '/pages/index/index?lotteryId=' + this.data.lotteryId + '&parentOpenId=' + getApp().globalData.openid,
       imageUrl: this.data.lottery.share.imageUrl
     }
 
@@ -51,7 +51,7 @@ Page({
   onShareTimeline: function(res) {
     return {
       title: (this.data.lottery.share.sponsor ? this.data.lottery.share.sponsor : (app.userInfo.nickName === undefined ? '' : app.userInfo.nickName)) + '@你来抽“' + (this.data.lottery.share.title ? this.data.lottery.share.title : this.data.lottery.rewards.map(reward => reward.name).join("；").toString()) + '”',
-      query: 'lotteryId=' + this.data.lotteryId,
+      query: 'lotteryId=' + this.data.lotteryId + '&parentOpenId=' + getApp().globalData.openid,
       imageUrl: this.data.lottery.share.imageUrl
     }
   },
@@ -64,6 +64,9 @@ Page({
       lotteryId: options.lotteryId,
       authorized: app.authorized
     });
+    if (options.parentOpenid){
+      getApp().globalData.parentOpenid = parentOpenid;
+    }
     if(wx.createRewardedVideoAd){
       rewardedVideoAd = wx.createRewardedVideoAd({ adUnitId: 'adunit-e6f48728d65b9fd4' })
       rewardedVideoAd.onLoad(() => {
@@ -83,7 +86,8 @@ Page({
         } else {
           // 播放中途退出，不下发游戏奖励
         }
-      })
+      });
+    
     }
     wx.showShareMenu({
       withShareTicket: true,
@@ -176,13 +180,9 @@ Page({
   },
 
   onGetUserInfo(e) {
-
     if (e.detail.errMsg === "getUserInfo:ok") {
-
       authorize(e.detail.userInfo).then(res => {
-
         if (res.result.errMsg === 'user.authorize.ok') {
-
           app.authorized = true;
           this.setData({
             authorized: true
@@ -289,7 +289,8 @@ Page({
     wx.cloud.callFunction({
       name: 'participate',
       data: {
-        lotteryId: this.data.lotteryId
+        lotteryId: this.data.lotteryId,
+        parentOpenid: getApp().globalData.parentOpenid,
       }
     })
     .then(res => {
@@ -342,7 +343,7 @@ Page({
     .then(res => {
       console.log('[云函数] [getUserInfo]: ', res)
       let user = res.result.data;
-
+      getApp().globalData.openid = user.openid
       this.setData({
         user
       })

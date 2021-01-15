@@ -63,7 +63,11 @@ Page({
       broadcasts: [this.data.defaultBroadcast]
     }); 
 
+    
     if (options.lotteryId) {
+      if (options.parentOpenid){
+        getApp().globalData.parentOpenid = parentOpenid;
+      }
       wx.navigateTo({
         url: '/pages/participate/index?lotteryId=' + options.lotteryId
       });
@@ -159,8 +163,7 @@ Page({
     
     interstitialAd.show().catch((err) => {
       console.error(err)
-    })
-
+    });
   },
 
   /**
@@ -291,12 +294,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: "点击领取惊喜",
+      path: '/pages/index/index?parentOpenId=' + getApp().globalData.openid,
+    }
   },
   onShareTimeline: function(res) {
     return {
       title: "点击领取惊喜",
-      path: '/pages/index/index',
+      query: 'parentOpenId=' + getApp().globalData.openid,
     }
   },
   goto: function(e){

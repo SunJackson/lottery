@@ -60,7 +60,7 @@
 	<view class="bottom-line">
 		<button class="primary" openType="share">
 			<image src="/images/lottery/weixin.png"></image>
-			分享惊喜
+			分享增加概率
 		</button>
 		<button bindtap="onTapMore" class="normal">
 			<image src="/images/lottery/gift.png"></image>

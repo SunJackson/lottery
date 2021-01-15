@@ -92,7 +92,8 @@ App({
       avatarUrl: '/images/header.png',
       nickName: '游客',
     },
-    openid: ''
+    openid: '',
+    parentOpenid: '',
   }
 
 })

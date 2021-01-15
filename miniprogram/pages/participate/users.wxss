@@ -1,8 +1,22 @@
 /* miniprogram/pages/participate/users.wxss */
 
 .users {
-  padding: 0 20rpx;
   display: flex;
+}
+.user {
+  padding: 20 20rpx;
+  align-items: center;
   flex-wrap: wrap;
   justify-content: center;
+}
+.user image {
+  align-items: center;
+}
+
+.userzl {
+  font-size: 20rpx;
+  font-weight: bold;
+}
+.userzl text {
+  color: red;
 }

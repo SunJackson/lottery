@@ -24,15 +24,15 @@ Page({
     if (e.detail.errMsg === "getUserInfo:ok") {
 
       app.globalData.userInfo = e.detail.userInfo;
-
       authorize(e.detail.userInfo).then(res => {
-
         if (res.result.errMsg === 'user.authorize.ok' || res.result.errMsg === 'user.authorize:authorized') {
 
           app.onAuthorized(res.result.data.userInfo);
           wx.showLoading({
             title: '授权成功'
           });
+          console.log(res.result.data)
+          getApp().globalData.openid = res.result.data.openid;
           setTimeout(() => {
             wx.hideLoading();
             app.navigateBack();

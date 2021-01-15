@@ -29,7 +29,6 @@ Page({
     wx.showNavigationBarLoading();
     this.data.lotteryId = options.lotteryId;
     queryParticipatedUsers(this.data.currentPage, this.data.pageSize, this.data.lotteryId).then(res => {
-
       wx.hideNavigationBarLoading();
       if (res.result.errMsg === 'query-participated-users-page:none') {
         this.setData({
