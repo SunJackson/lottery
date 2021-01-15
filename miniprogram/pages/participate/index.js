@@ -90,26 +90,16 @@ Page({
       menus: ['shareAppMessage', 'shareTimeline']
     })
   },
-  updateInfo: function(){
-
-    const db = wx.cloud.database()
-
-    const _ = db.command
-    db.collection('lottery').doc(this.data.lotteryId).update({
-      data: {
-        // 表示指示数据库将字段自增 10
-        num: this.data.lottery.num
-      }
-    })
-    .then(res=>{
-      console.log(res)
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  },
-
   lottery: function(){
+    wx.requestSubscribeMessage({
+      tmplIds: ['-7Hp39YvU2zNnULRZl8LTgF88HfAhtCT3wrukJ-zJW8', '6_gjs6qHioKpWeKKpZaGdrEsBL6GHq2yqoEpvLns_lc'],
+      success (res) { 
+        console.log(res);
+      },
+      fail (err){
+        console.log(err);
+      }
+    });
     this.onParticipate();
     wx.showLoading({
       title: '报名中',
@@ -308,13 +298,11 @@ Page({
         title: "报名成功",
         icon: "none"
       });
-      this.data.lottery.num = this.data.lottery.num + 1;
+    
       this.setData({
         participated: true,
-        lottery: this.data.lottery
+        'lottery.num': this.data.lottery.num + 1,
       },()=>{
-        
-        this.updateInfo();
       })
     
     }).catch(err => {

@@ -303,17 +303,7 @@ Page({
     console.log(e.currentTarget.dataset);
     let lotteryId = e.currentTarget.dataset.id;
     let that = this;
-    wx.requestSubscribeMessage({
-      tmplIds: ['-7Hp39YvU2zNnULRZl8LTgF88HfAhtCT3wrukJ-zJW8', '6_gjs6qHioKpWeKKpZaGdrEsBL6GHq2yqoEpvLns_lc'],
-      success (res) { 
-        console.log(res);
-        that.newGo(lotteryId); 
-      },
-      fail (err){
-        console.log(err);
-        that.newGo(lotteryId); 
-      }
-    })
+    that.newGo(lotteryId); 
   },
 
   // 2020-07-21消息仅仅订阅，但是要到待开奖才会发送，通过触发器，在每个整点的10分开始执行

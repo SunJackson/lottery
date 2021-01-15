@@ -23,6 +23,19 @@ exports.main = async (event, context) => {
   }).get();
 
   try {
+    const _ = db.command
+    db.collection('lottery').doc(lotteryId).update({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        num : _.inc(1),
+      }
+    })
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err=>{
+      console.log(err);
+    });
     return await db.collection('participate').add({
       data: {
         openid: OPENID,
