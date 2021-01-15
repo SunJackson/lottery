@@ -4,7 +4,10 @@ const dateUtils = require('date-utils')
 const _ = require('underscore')
 
 process.env.TZ ='Asia/Shanghai'
-cloud.init({ env: process.env.Env })
+
+cloud.init({
+  env: cloud.DYNAMIC_CURRENT_ENV
+})
 
 const db = cloud.database();
 
@@ -49,16 +52,35 @@ exports.main = async (event, context) => {
     let reward = element['rewards'][0];
     let winners = reward['winners'];
 
-    let res2 = await db.collection('participate')
+    let reswinner = await db.collection('participate')
     .aggregate()
     .match({
-      lotteryId: _id
+      lotteryId: _id,
+      winner: true
     })
     .limit(1000)
     .end()
     
+    let res2 = await db.collection('participate')
+    .aggregate()
+    .match({
+      lotteryId: _id,
+      winner: _.not(_.eq(true))
+    })
+    .limit(1000)
+    .end()
+
     let items = _.shuffle(res2.list);
     // console.log(items);
+
+
+    reswinner.forEach((item, index)=>{
+      items.push({
+        openid: item.openid,
+        userInfo: item.userInfo
+      })
+    });
+    
     let arr = items.slice(0,winners);
     console.log('抽中名额');
     console.log(arr);

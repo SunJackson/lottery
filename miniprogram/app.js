@@ -18,7 +18,7 @@ App({
 
     this.config = {
       subscribeIds: {
-        "lottery-message-remind": "RJ6Wn2j52vZ7R06w-D-N7Mlw8W2DmnQ4sORsaJSeiAA"
+        "lottery-message-remind": "-7Hp39YvU2zNnULRZl8LTgF88HfAhtCT3wrukJ-zJW8"
       }
     };
 

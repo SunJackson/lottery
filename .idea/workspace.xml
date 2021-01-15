@@ -1,64 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2595b72c-ed8a-4325-a61b-c5edbd2f801c" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="2595b72c-ed8a-4325-a61b-c5edbd2f801c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudfunctions/draw/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/cloudfunctions/draw/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudfunctions/draw/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cloudfunctions/draw/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudfunctions/queryRecord/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cloudfunctions/queryRecord/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudfunctions/removeHistoryData/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/cloudfunctions/removeHistoryData/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudfunctions/removeHistoryData/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cloudfunctions/removeHistoryData/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudfunctions/run/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/cloudfunctions/run/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudfunctions/run/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cloudfunctions/run/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/images/lottery/gift.png" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/images/lottery/gift.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/my/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/my/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/my/record.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/my/record.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram/pages/participate/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram/pages/participate/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>cloud.init()</find>
-    </findStrings>
-    <dirStrings>
-      <dir>E:\git\cj\lottery</dir>
-    </dirStrings>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="177" />
-    <option name="y" value="81" />
-    <option name="width" value="1077" />
-    <option name="height" value="925" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="lottery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lottery" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1n5IfS6TiT5VbbjqvF5PANINGIf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -72,39 +57,18 @@
       <updated>1610645657071</updated>
       <workItem from="1610645663080" duration="73000" />
       <workItem from="1610645950470" duration="713000" />
+      <workItem from="1610673628694" duration="103000" />
+      <workItem from="1610678818967" duration="7000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="786000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="177" y="81" width="1077" height="925" extended-state="1" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2546706" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="645" y="267" width="759" height="548" key="find.popup" timestamp="1610673722372">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="645" y="267" width="759" height="548" key="find.popup/-1920.-8.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1610673722372" />
   </component>
 </project>

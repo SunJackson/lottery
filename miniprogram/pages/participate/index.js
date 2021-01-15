@@ -33,6 +33,28 @@ Page({
       height: 980
     }
   },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (res) {
+    if (res.form === 'menu'){
+      console.log("页内分享")
+    }
+    return {
+      title: (this.data.lottery.share.sponsor ? this.data.lottery.share.sponsor : (app.userInfo.nickName === undefined ? '' : app.userInfo.nickName)) + '@你来抽“' + (this.data.lottery.share.title ? this.data.lottery.share.title : this.data.lottery.rewards.map(reward => reward.name).join("；").toString()) + '”',
+      path: '/pages/index/index?lotteryId=' + this.data.lotteryId,
+      imageUrl: this.data.lottery.share.imageUrl
+    }
+
+  },
+  onShareTimeline: function(res) {
+    return {
+      title: (this.data.lottery.share.sponsor ? this.data.lottery.share.sponsor : (app.userInfo.nickName === undefined ? '' : app.userInfo.nickName)) + '@你来抽“' + (this.data.lottery.share.title ? this.data.lottery.share.title : this.data.lottery.rewards.map(reward => reward.name).join("；").toString()) + '”',
+      query: 'lotteryId=' + this.data.lotteryId,
+      imageUrl: this.data.lottery.share.imageUrl
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -62,8 +84,11 @@ Page({
           // 播放中途退出，不下发游戏奖励
         }
       })
-  
     }
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
   },
   updateInfo: function(){
 
@@ -73,7 +98,7 @@ Page({
     db.collection('lottery').doc(this.data.lotteryId).update({
       data: {
         // 表示指示数据库将字段自增 10
-        num: _.inc(1)
+        num: this.data.lottery.num
       }
     })
     .then(res=>{
@@ -148,7 +173,6 @@ Page({
   },
 
   onContact(e) {
-
     wx.setClipboardData({
       data: this.data.user.rewardCode,
       success: function (res) {
@@ -284,11 +308,12 @@ Page({
         title: "报名成功",
         icon: "none"
       });
-
+      this.data.lottery.num = this.data.lottery.num + 1;
       this.setData({
         participated: true,
-        'lottery.num': this.data.lottery.num+1
+        lottery: this.data.lottery
       },()=>{
+        
         this.updateInfo();
       })
     
@@ -417,17 +442,5 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-    return {
-      title: (this.data.lottery.share.sponsor ? this.data.lottery.share.sponsor : (app.userInfo.nickName === undefined ? '' : app.userInfo.nickName)) + '@你来抽“' + (this.data.lottery.share.title ? this.data.lottery.share.title : this.data.lottery.rewards.map(reward => reward.name).join("；").toString()) + '”',
-      path: '/pages/index/index?lotteryId=' + this.data.lotteryId,
-      imageUrl: this.data.lottery.share.imageUrl
-    }
-
-  }
-
+  
 })

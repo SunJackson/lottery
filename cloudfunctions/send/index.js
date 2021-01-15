@@ -9,17 +9,23 @@ exports.main = async (event, context) => {
         touser: OPENID,
         page: '/pages/index/index',
         data: {
-          thing1: {
-            value: '抽奖活动001'
+          thing4: {
+            value: event.thing4?event.thing4:'抽奖活动开始提醒'
           },
-          time3: {
-            value: event.time
+          date3: {
+            value: event.date3?event.date3:''
           },
-          thing5: {
-            value: '请进入小程序查询'
+          thing2: {
+            value: event.thing2?event.thing2:'请进入小程序查询详情'
+          },
+          name1: {
+            value: event.name1?event.name1:'查看详情'
+          },
+          thing7: {
+            value: event.thing7?event.thing7:'请进入小程序查看注意事项'
           }
         },
-        templateId: 'RJ6Wn2j52vZ7R06w-D-N7Mlw8W2DmnQ4sORsaJSeiAA'
+        templateId: '-7Hp39YvU2zNnULRZl8LTgF88HfAhtCT3wrukJ-zJW8'
       })
     console.log(result)
     return result

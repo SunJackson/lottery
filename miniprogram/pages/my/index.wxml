@@ -23,7 +23,7 @@
 
     <navigator url="/pages/my/record?navigationIndex=2" hover-class="button-hover right" hover-stay-time="100" class="flex-column-center" style="flex:1;height:100%;">
       <view class="bold" style="color: #333;font-size: 38rpx;">{{ total3 }}</view>
-      <view class="padding-top-6rpx" style="color: #888;font-size: 30rpx;">所有活动</view>
+      <view class="padding-top-6rpx" style="color: #888;font-size: 30rpx;">所有参与</view>
     </navigator>
 
   </view>

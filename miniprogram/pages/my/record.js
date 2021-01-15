@@ -9,7 +9,7 @@ Page({
     navigationIndex: 0,
     navigationType: 'awarded-lottery',
     navigations: [{
-        name: '幸运记录',
+        name: '惊喜记录',
         type: 'awarded-lottery'
       },
       {

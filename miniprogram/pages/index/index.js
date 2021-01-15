@@ -51,6 +51,10 @@ Page({
         console.log('onClose event emit', res)
       })
     }
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    });
 
     console.log(decodeURIComponent(options.scene))
 
@@ -64,6 +68,7 @@ Page({
         url: '/pages/participate/index?lotteryId=' + options.lotteryId
       });
     }
+    
 
   },
 
@@ -288,12 +293,18 @@ Page({
   onShareAppMessage: function () {
 
   },
+  onShareTimeline: function(res) {
+    return {
+      title: "点击领取惊喜",
+      path: '/pages/index/index',
+    }
+  },
   goto: function(e){
     console.log(e.currentTarget.dataset);
     let lotteryId = e.currentTarget.dataset.id;
     let that = this;
     wx.requestSubscribeMessage({
-      tmplIds: ['RJ6Wn2j52vZ7R06w-D-N7Mlw8W2DmnQ4sORsaJSeiAA'],
+      tmplIds: ['-7Hp39YvU2zNnULRZl8LTgF88HfAhtCT3wrukJ-zJW8', '6_gjs6qHioKpWeKKpZaGdrEsBL6GHq2yqoEpvLns_lc'],
       success (res) { 
         console.log(res);
         that.newGo(lotteryId); 
@@ -307,7 +318,6 @@ Page({
 
   // 2020-07-21消息仅仅订阅，但是要到待开奖才会发送，通过触发器，在每个整点的10分开始执行
   newGo: function(lotteryId){
-    
     this.result(lotteryId);
   },
   go: function(lotteryId){

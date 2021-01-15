@@ -11,7 +11,7 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
 
   let openid = wxContext.OPENID;
-  
+  console.log(openid)
 
   let type = event.type;
   let countResult;
@@ -38,7 +38,7 @@ exports.main = async (event, context) => {
         openid: openid
       }).count();
       total = countResult.total
-
+      console.log("中奖纪录数" + total)
       broadcastResult = await db.collection('broadcast').where({
         openid: openid
       }).limit(1000).get();
@@ -50,11 +50,9 @@ exports.main = async (event, context) => {
       items2.forEach(element => {
         arr.push(element.lotteryId);
       });
-    
-      console.log('items1',items1)
+  
       items1.forEach(element => {
-    
-        if(arr.indexOf(element._id) != -1 && element.status == 1){
+        if(arr.indexOf(element._id) != -1 && element.status == -1){
           total++;
           data.push(element);
         }
