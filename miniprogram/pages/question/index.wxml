@@ -3,7 +3,7 @@
 
 <view>
 
-	<view class="rule">
+	<!-- <view class="rule">
 		<view class="item" wx:for="{{ questions }}" wx:key="index" wx:for-item="question" wx:for-index="questionIndex">
 			<view class="sequence-container">
 				<view class="sequence" style="">{{ strings.fill(questionIndex + 1, 2, 0) }}</view>
@@ -12,6 +12,9 @@
 				<view>{{ question.content }}</view>
 			</view>
 		</view>
-	</view>
+	</view> -->
+	<web-view src="https://mp.weixin.qq.com/s?__biz=MzU3MzY0OTAwNQ==&mid=2247483964&idx=1&sn=cac31e1319dcfd428362da99c77b716a&chksm=fd3f3b3eca48b228d60b1a7b8753bea85d178722799687a1a90a9a6c1b7f63235587967f289c&token=497362880&lang=zh_CN#rd">
+
+	</web-view>
 
 </view>

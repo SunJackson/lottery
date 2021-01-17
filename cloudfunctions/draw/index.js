@@ -16,7 +16,7 @@ const MAX_LIMIT = 100
 // 云函数入口函数
 exports.main = async (event, context) => {
 
-
+  const _ = db.command;
   let dt = new Date();
   // let dt = new Date().addHours(8);
   let time = dt.toFormat("YYYY-MM-DD HH24:MI:SS");
@@ -70,23 +70,38 @@ exports.main = async (event, context) => {
     .limit(1000)
     .end()
 
-    let items = _.shuffle(res2.list);
-    // console.log(items);
+    // 随机打乱
+    const items = res2.list;
+    for(let i = items.length - 1; i> 0; i--){
+      const j = Math.floor(Math.random() * i)
+      const temp = items[i]
+      items[i] = items[j]
+      items[j] = temp
+    }
 
+    // let items = _.shuffle(res2.list);
+    console.log(items);
 
-    reswinner.forEach((item, index)=>{
-      items.push({
+    let reswinners = [];
+    reswinner.list.forEach((item, index)=>{
+      reswinners.push({
+        openid: item.openid,
+        userInfo: item.userInfo
+      })
+    });
+
+    items.forEach((item, index)=>{
+      reswinners.push({
         openid: item.openid,
         userInfo: item.userInfo
       })
     });
     
-    let arr = items.slice(0,winners);
+    let arr = reswinners.slice(0,winners);
     console.log('抽中名额');
     console.log(arr);
     let rewardWinners = [];
     arr.forEach((item, index)=>{
-
       rewardWinners.push({
         openid: item.openid,
         userInfo: item.userInfo

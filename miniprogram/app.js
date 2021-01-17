@@ -11,7 +11,6 @@ import {
 } from 'api/config.js'
 
 App({
-
   onLaunch: function () {
 
     this.userInfo = {};
@@ -92,8 +91,8 @@ App({
       avatarUrl: '/images/header.png',
       nickName: '游客',
     },
-    openid: '',
-    parentOpenid: '',
+    openid: null,
+    parentOpenid: null,
   }
 
 })

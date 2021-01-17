@@ -63,11 +63,11 @@ Page({
       broadcasts: [this.data.defaultBroadcast]
     }); 
 
-    
+    if (options.parentOpenid){
+      app.globalData.parentOpenid = options.parentOpenid;
+    }
+
     if (options.lotteryId) {
-      if (options.parentOpenid){
-        getApp().globalData.parentOpenid = parentOpenid;
-      }
       wx.navigateTo({
         url: '/pages/participate/index?lotteryId=' + options.lotteryId
       });
@@ -126,6 +126,7 @@ Page({
       console.log('[云函数] [queryLottery]: ', res)
       let total = res.result.total;
       let totalPage = res.result.totalPage;
+      app.globalData.openid = res.result.openid;
       if(total == 0){
         this.setData({
           noLottery: true,
@@ -294,15 +295,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    console.log(app.globalData.openid)
     return {
       title: "点击领取惊喜",
-      path: '/pages/index/index?parentOpenId=' + getApp().globalData.openid,
+      path: '/pages/index/index?parentOpenid=' + app.globalData.openid,
     }
   },
   onShareTimeline: function(res) {
     return {
       title: "点击领取惊喜",
-      query: 'parentOpenId=' + getApp().globalData.openid,
+      query: 'parentOpenid=' + app.globalData.openid,
     }
   },
   goto: function(e){

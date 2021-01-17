@@ -46,15 +46,14 @@
 
 	<navigator url="/pages/participate/users?lotteryId={{ lotteryId }}" hover-class="link-hover" class="participate-users">已有{{ lottery.num }}人参与，</navigator>
 	<view class="users" wx:if="{{ participates.length > 0 }}">
-		<image mode="widthFix" lazy-load="{{ true }}" wx:for="{{ participates }}" wx:key="index" wx:for-item="participate" src="{{ participate.userInfo.avatarUrl }}" style="display: block;width: 60rpx;height: auto;margin: 0 5rpx 10rpx 5rpx;background-color: #f6f6f6;"></image>
+		<image mode="aspectFit" lazy-load="{{ true }}" wx:for="{{ participates }}" wx:key="index" wx:for-item="participate" src="{{ participate.userInfo.avatarUrl }}" style="display: block;width: 60rpx;height: 60rpx;margin: 0 5rpx 10rpx 5rpx;background-color: #f6f6f6;"></image>
 	</view>
-
 	<view style="margin: 20rpx;">
 		<image style="width: {{ brochure.width }}rpx;display: block;height: {{ brochure.height }}rpx;" wx:for="{{ lottery.brochures }}" wx:key="index" wx:for-item="brochure" src="{{ brochure.url }}" lazy-load="{{ true }}"></image>
 	</view>
 
 	<view style="padding: 20rpx 0 120rpx 0;">
-		<view style="color: #aaa;font-size: 28rpx;text-align: center;">关注我，每天送惊喜哦</view>
+		<view style="color: #aaa;font-size: 28rpx;text-align: center;">关注我，每天领惊喜哦</view>
 	</view>
 
 	<view class="bottom-line">

@@ -13,7 +13,6 @@ exports.main = async (event, context) => {
   console.log(event);
 
   let lotteryId = event.lotteryId;
-  let parentOpenid = event.parentOpenid;
 
   const {
     OPENID
@@ -43,6 +42,9 @@ exports.main = async (event, context) => {
         lotteryId: lotteryId,
         userInfo: res.data[0]['userInfo'],
         participatedTime: new Date(),
+        helpNo: 0,
+        helpList: new Array(),
+        winner: false
       }
     });
 

@@ -30,32 +30,31 @@ exports.main = async (event, context) => {
     console.log(element.condition);
     console.log(element.condition.value);
     console.log(new Date(element.condition.value));
-    console.log(new Date(element.condition.value).getTime());
 
-    console.log(time);
-    console.log(typeof time);
-    console.log(new Date(time).getTime());
-
-    let n1 = new Date(time).getTime();
-    let n2 = new Date(element.condition.value).getTime();
-
-    if(n1 > n2){
-      let _id = element['_id'];
-      db.collection('lottery').doc(_id).update({
-        // data 字段表示需新增的 JSON 数据
-        data: {
-          status: -1
-        }
-      })
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err=>{
-        console.log(err);
-      })
+    if (element.condition.type == 1 && element.num < element.condition.value){
+      return
     }
-  
-    
+    if (element.condition.type == 2){
+
+      let n1 = new Date(time).getTime();
+      let n2 = new Date(element.condition.value).getTime();
+      if(n1 < n2){
+        return
+      }
+    }
+    let _id = element['_id'];
+    db.collection('lottery').doc(_id).update({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        status: -1
+      }
+    })
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err=>{
+      console.log(err);
+    })
   });
 
 }

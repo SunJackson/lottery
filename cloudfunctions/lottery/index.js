@@ -600,7 +600,6 @@ async function queryParticipatedUsers(event) {
         country: 0,
         gender: 0,
         language: 0,
-        nickName: 0,
         province: 0
       }
     })
@@ -608,12 +607,13 @@ async function queryParticipatedUsers(event) {
       lotteryId: event.lotteryId
     })
     .sort({
-      participatedTime: -1
+      helpNo: -1,
+      participatedTime: 1,
     })
     .skip(skipIndex)
     .limit(pageSize)
     .end();
-
+  console.log(usersRes.list)
   return {
     env: cloud.DYNAMIC_CURRENT_ENV,
     errMsg: 'query-participated-users-page:ok',
@@ -621,7 +621,11 @@ async function queryParticipatedUsers(event) {
       total: total,
       currentPage: event.page,
       totalPage: totalPage,
-      avatars: usersRes.list.map(user => user.userInfo.avatarUrl)
+      avatars: usersRes.list.map(user => ({
+        avatarUrl:user.userInfo.avatarUrl,
+        nickName: user.userInfo.nickName,
+        helpNo : user.helpNo?user.helpNo:0
+      }))
     }
   };
 

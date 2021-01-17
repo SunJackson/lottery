@@ -72,6 +72,7 @@ exports.main = async (event, context) => {
   return {
     total,
     totalPage: batchTimes,
-    data: items1
+    data: items1,
+    openid: openid
   }
 }

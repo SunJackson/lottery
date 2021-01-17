@@ -12,7 +12,7 @@ Page({
   data: {
     lotteryId: '',
     currentPage: 1,
-    pageSize: 30,
+    pageSize: 10,
     totalPage: 1,
     total: undefined,
     noData: false,
@@ -30,6 +30,7 @@ Page({
     this.data.lotteryId = options.lotteryId;
     queryParticipatedUsers(this.data.currentPage, this.data.pageSize, this.data.lotteryId).then(res => {
       wx.hideNavigationBarLoading();
+      console.log("[onLoad]", res);
       if (res.result.errMsg === 'query-participated-users-page:none') {
         this.setData({
           querying: false,
@@ -69,9 +70,10 @@ Page({
     this.data.currentPage++;
     wx.showNavigationBarLoading();
     queryParticipatedUsers(this.data.currentPage, this.data.pageSize, this.data.lotteryId).then(res => {
-
       wx.hideNavigationBarLoading();
+      console.log("[onTapQueryMoreUsers]", res);
       if (res.result.errMsg === 'query-participated-users-page:none') {
+
         this.setData({
           querying: false,
           noData: true,
@@ -83,6 +85,7 @@ Page({
         });
         return;
       }
+
       if (res.result.errMsg === 'query-participated-users-page:empty') {
         this.setData({
           querying: false,
@@ -152,7 +155,21 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
+  onShareAppMessage: function (res) {
+    if (res.form === 'menu'){
+      console.log("页内分享")
+    }
+    return {
+      title: app.userInfo.nickName === undefined ? '拼人品的啥时候到了，点进来有惊喜哦！' : app.userInfo.nickName + '@你来领奖了',
+      path: '/pages/index/index?parentOpenid=' + app.globalData.openid,
+      imageUrl: '../../images/lottery/gift-share.png'
+    }
+  },
+  onShareTimeline: function(res) {
+    return {
+      title: app.userInfo.nickName === undefined ? '拼人品的啥时候到了，点进来有惊喜哦！' : app.userInfo.nickName + '@你来领奖了',
+      query: 'parentOpenid=' + app.globalData.openid,
+      imageUrl: '../../images/lottery/gift-share.png'
+    }
   }
 })

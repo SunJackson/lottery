@@ -1,12 +1,18 @@
 <!--miniprogram/pages/participate/users.wxml-->
 
 <view style="text-align: center;margin: 20rpx 0;" wx:if="{{ total !== undefined }}">累计参与用户 {{ total }} 人</view>
-
-<view class="users">
-  <view class="user" wx:if="{{ avatars.length > 0 }}"  wx:for="{{ avatars }}" wx:key="index" wx:for-item="avatar">
-  <image mode="widthFix" lazy-load="{{ true }}" src="{{ avatar }}" style="display: block;width: 60rpx;height: auto;margin: 0 5rpx 10rpx 5rpx;background-color: #f6f6f6;">
-  </image>
-  <view class="userzl">助力<text>+9991</text></view>
+<view class="item-box">
+  <view class="items">
+    <view wx:for="{{avatars}}"  wx:if="{{ avatars.length > 0 }}" wx:key="index"  wx:for-item="avatar" class="item">
+      <view class="inner txt">
+      <i class="NO">No.{{index + 1}}</i>
+      <image class="item-icon" mode="aspectFit" src="{{avatar.avatarUrl}}"></image>
+       <i> {{avatar.nickName}}</i>
+      <span class="item-data">
+       <i class="rankpace"> {{avatar.helpNo}}人助力</i>
+      </span>
+      </view>
+    </view>
   </view>
 </view>
 

@@ -28,6 +28,7 @@ Page({
     subscribeSettingGuideDisplaying: true,
     resultDialogDisplaying: false,
     authorized: true,
+    helpNo: 0,
     poster: {
       width: 320,
       height: 980
@@ -43,7 +44,7 @@ Page({
     }
     return {
       title: (this.data.lottery.share.sponsor ? this.data.lottery.share.sponsor : (app.userInfo.nickName === undefined ? '' : app.userInfo.nickName)) + '@你来抽“' + (this.data.lottery.share.title ? this.data.lottery.share.title : this.data.lottery.rewards.map(reward => reward.name).join("；").toString()) + '”',
-      path: '/pages/index/index?lotteryId=' + this.data.lotteryId + '&parentOpenId=' + getApp().globalData.openid,
+      path: '/pages/index/index?lotteryId=' + this.data.lotteryId + '&parentOpenid=' + app.globalData.openid,
       imageUrl: this.data.lottery.share.imageUrl
     }
 
@@ -51,7 +52,7 @@ Page({
   onShareTimeline: function(res) {
     return {
       title: (this.data.lottery.share.sponsor ? this.data.lottery.share.sponsor : (app.userInfo.nickName === undefined ? '' : app.userInfo.nickName)) + '@你来抽“' + (this.data.lottery.share.title ? this.data.lottery.share.title : this.data.lottery.rewards.map(reward => reward.name).join("；").toString()) + '”',
-      query: 'lotteryId=' + this.data.lotteryId + '&parentOpenId=' + getApp().globalData.openid,
+      query: 'lotteryId=' + this.data.lotteryId + '&parentOpenid=' + app.globalData.openid,
       imageUrl: this.data.lottery.share.imageUrl
     }
   },
@@ -65,7 +66,7 @@ Page({
       authorized: app.authorized
     });
     if (options.parentOpenid){
-      getApp().globalData.parentOpenid = parentOpenid;
+      app.globalData.parentOpenid = parentOpenid;
     }
     if(wx.createRewardedVideoAd){
       rewardedVideoAd = wx.createRewardedVideoAd({ adUnitId: 'adunit-e6f48728d65b9fd4' })
@@ -89,14 +90,10 @@ Page({
       });
     
     }
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ['shareAppMessage', 'shareTimeline']
-    })
   },
   lottery: function(){
     wx.requestSubscribeMessage({
-      tmplIds: ['-7Hp39YvU2zNnULRZl8LTgF88HfAhtCT3wrukJ-zJW8', '6_gjs6qHioKpWeKKpZaGdrEsBL6GHq2yqoEpvLns_lc'],
+      tmplIds: ['-7Hp39YvU2zNnULRZl8LTgF88HfAhtCT3wrukJ-zJW8', 'mQ20r2nwV8sc-R5GRv05ykoQCfgAlnIFsqkgs1na_YY'],
       success (res) { 
         console.log(res);
       },
@@ -168,7 +165,7 @@ Page({
 
   onContact(e) {
     wx.setClipboardData({
-      data: this.data.user.rewardCode,
+      data: this.data.lotteryId + '|' + app.globalData.openid,
       success: function (res) {
         wx.showToast({
           title: '兑换码已复制',
@@ -206,13 +203,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
     this.getLottery();
     this.getParticipate();
-
+    this.getHelp();
   },
   getLottery: function(){
-
     wx.cloud.callFunction({
       name: 'getLottery',
       data: {
@@ -263,6 +258,28 @@ Page({
       })
     })
   },
+  toHelp: function(){
+    wx.cloud.callFunction({
+      name: 'help',
+      data: {
+        lotteryId: this.data.lotteryId,
+        parentOpenid: app.globalData.parentOpenid,
+      }
+    })
+    .then(res => {
+      console.log('[云函数] [help]: ', res)    
+      wx.showToast({
+        title: "助力成功",
+        icon: "success"
+      });
+    
+    }).catch(err => {
+      console.error('[云函数] [help] 调用失败', err)
+      wx.navigateTo({
+        url: '../deployFunctions/deployFunctions',
+      })
+    })
+  },
   getParticipate: function(){
     wx.cloud.callFunction({
       name: 'getParticipate',
@@ -283,6 +300,37 @@ Page({
       wx.navigateTo({
         url: '../deployFunctions/deployFunctions',
       })
+    });
+  },
+  getHelp: function(){
+    wx.cloud.callFunction({
+      name: 'getHelp',
+      data: {
+        lotteryId: this.data.lotteryId
+      }
+    })
+    .then(res => {
+      console.log('[云函数] [getHelp]: ', res)
+      if (res.result.data.length !== 0) {
+        wx.showToast({
+          title: res.result.data[0].helpNo?res.result.data[0].helpNo:0 + '人已助力',
+          image: '../../images/lottery/help.png',
+          duration: 3000,
+          mask: true
+        });
+        setTimeout(function(){
+          wx.hideToast()
+        },5000)
+        this.setData({
+          helpNo: res.result.data[0].helpNo
+        })
+      }
+      
+    }).catch(err => {
+      console.error('[云函数] [getHelp] 调用失败', err)
+      wx.navigateTo({
+        url: '../deployFunctions/deployFunctions',
+      })
     })
   },
   participate: function(){
@@ -294,10 +342,13 @@ Page({
       }
     })
     .then(res => {
+      if (app.globalData.parentOpenid) {
+        this.toHelp();
+      }
       console.log('[云函数] [participate]: ', res)
       wx.showToast({
         title: "报名成功",
-        icon: "none"
+        icon: "success"
       });
     
       this.setData({
@@ -331,7 +382,8 @@ Page({
     this.getBroadcast();
     if (app.authorized == true) {
       this.getUserInfo();
-    }
+    };
+    
   },
   getUserInfo: function(){
     wx.cloud.callFunction({
@@ -342,7 +394,7 @@ Page({
     })
     .then(res => {
       console.log('[云函数] [getUserInfo]: ', res)
-      let user = res.result.data;
+      let user = res.result.data[0];
       getApp().globalData.openid = user.openid
       this.setData({
         user

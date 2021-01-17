@@ -1,10 +1,10 @@
 {
   "_id": "2020011501",
-  "pic": "cloud://lottery-1pa6r.6c6f-lottery-1pa6r-1302921430/2020082101.jpg",
+  "pic": "cloud://lowcode-4guet6pc69809275.6c6f-lowcode-4guet6pc69809275-1256935460/奖品/fmhb.png",
   "condition": {
     "type": 2.0,
-    "description": "08-23 23:00:00 自动开奖",
-    "value": "2020-08-23 23:00:00"
+    "description": "2021-01-30 23:00:00 自动开奖",
+    "value": "2021-01-30 23:00:00"
   },
   "status": 1.0,
   "sponsor": {
@@ -14,17 +14,17 @@
     "appId": "wx9472d5ad54e879ed"
   },
   "rewards": [{
-    "name": "清风抽纸X10",
-    "winners": 1
+    "name": "红包封面",
+    "winners": 10
   }],
   "type": 0,
-  "value": 30,
+  "value": 0,
   "share": {
-    "imageUrl": "cloud://lottery-1pa6r.6c6f-lottery-1pa6r-1302921430/2020082101.jpg"
+    "imageUrl": "cloud://lowcode-4guet6pc69809275.6c6f-lowcode-4guet6pc69809275-1256935460/奖品/fmhb.png"
   },
   "display": 1,
   "endTime": {
-    "$date": "2020-07-31T10:05:01.881Z"
+    "$date": "2021-01-30T23:00:00.881Z"
   },
   "winners": [],
   "lottery": 0.0,

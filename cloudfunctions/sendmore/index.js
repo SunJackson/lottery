@@ -22,7 +22,6 @@ exports.main = async (event, context) => {
   items.forEach(async (element) => {
     console.log(element);
     let lottery = element['_id'];
-    let time = element['condition']['value'];
     let title = element['rewards'][0]['name'];
 
     let res2 = await db.collection('participate')
@@ -33,46 +32,42 @@ exports.main = async (event, context) => {
     .limit(1000)
     .end()
 
-    // console.log(res2);
-
     let lists = res2.list;
-    lists.forEach(async (part) => {
+    const sendPromises = lists.map(async part =>  {
       console.log(part);
-      
-      let openid = part['openid'];
-      const result = await cloud.openapi.subscribeMessage.send({
-        touser: openid,
-        page: '/pages/participate/index?lotteryId='+lottery,
-        data: {
-          thing1: {
-            value: title
-          },
-          time3: {
-            value: time
-          },
-          thing5: {
-            value: '请进入小程序查询'
-          }
-        },
-        templateId: 'RJ6Wn2j52vZ7R06w-D-N7Mlw8W2DmnQ4sORsaJSeiAA'
-      })
-      console.log(result)
+      try{
+          let sendParams = {
+            touser: part['openid'],
+            page: '/pages/participate/index?lotteryId='+lottery,
+            data: {
+              thing1: {
+                value: title
+              },
+              thing4: {
+                value: '中奖后请及时联系客服进行兑奖哦'
+              },
+              
+            },
+            template_id: 'mQ20r2nwV8sc-R5GRv05ykoQCfgAlnIFsqkgs1na_YY',
+            };
+          console.log(sendParams);
+          const result = await cloud.openapi.subscribeMessage.send(sendParams)
+          console.log(result)
+          return result      
+    }catch(e){
+      //TODO handle the exception
+      console.log('发送失败');
+      console.log(e);
+    }
+     
     })
-    
-
     db.collection('lottery').doc(lottery).update({
       // data 字段表示需新增的 JSON 数据
       data: {
         send: 1
       }
     })
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-
+    return Promise.all(sendPromises)
   });
 
   
