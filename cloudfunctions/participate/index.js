@@ -24,20 +24,10 @@ exports.main = async (event, context) => {
 
   try {
     const _ = db.command
-    db.collection('lottery').doc(lotteryId).update({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        num : _.inc(1),
-      }
-    })
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err=>{
-      console.log(err);
-    });
+
     return await db.collection('participate').add({
       data: {
+        _id: OPENID + lotteryId,
         openid: OPENID,
         lotteryId: lotteryId,
         userInfo: res.data[0]['userInfo'],
@@ -46,9 +36,24 @@ exports.main = async (event, context) => {
         helpList: new Array(),
         winner: false
       }
-    });
+    }).then(res => {
+      db.collection('lottery').doc(lotteryId).update({
+        // data 字段表示需新增的 JSON 数据
+        data: {
+          num : _.inc(1),
+        }
+      })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err=>{
+        console.log(err);
+      });
+    }
+    );
 
   } catch(e) {
     console.error(e)
+    return {errorCode: 1}
   }
 }

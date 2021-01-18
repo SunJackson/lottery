@@ -350,13 +350,13 @@ Page({
         title: "报名成功",
         icon: "success"
       });
-    
-      this.setData({
-        participated: true,
-        'lottery.num': this.data.lottery.num + 1,
-      },()=>{
-      })
-    
+      if (!res.result){
+        this.setData({
+          participated: true,
+          'lottery.num': this.data.lottery.num + 1,
+        },()=>{
+        })
+      }    
     }).catch(err => {
       console.error('[云函数] [participate] 调用失败', err)
       wx.navigateTo({
