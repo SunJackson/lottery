@@ -5,7 +5,7 @@
 <is-no-data wx:if="{{ noLottery }}"></is-no-data>
 
 <view class="border-radius-10rpx" style="margin: 20rpx;padding: 20rpx 30rpx;background-color: #fff;">
-  <swiper autoplay="{{ true }}" vertical="{{ true }}" circular="{{ true }}" interval="{{ swiperInterval }}" duration="{{ swiperDuration }}" current="{{ swiperIndex }}"style="height: 60rpx;pointer-events: none;">
+  <swiper autoplay="{{ true }}" vertical="{{ true }}" circular="{{ true }}" interval="{{ swiperInterval }}" duration="{{ swiperDuration }}" current="{{ swiperIndex }}"style="height: 80rpx;font-size: 28rpx;">
     <swiper-item wx:for="{{ broadcasts }}" wx:for-item="broadcast" wx:key="broadcastIndex">
       <view style="display: flex;align-items: center;height: 100%;">
          <lottery-broadcast-item broadcast="{{ broadcast }}"></lottery-broadcast-item>
